@@ -6,9 +6,9 @@ from the contents of the web_static folder
 
 import os.path as path
 from datetime import datetime
-from fabric.api import local
+from fabric.api import local, task
 
-
+@task
 def do_pack():
     """
     creates an archive file

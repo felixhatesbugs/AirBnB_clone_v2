@@ -1,14 +1,37 @@
 #!/usr/bin/python3
-"""
-Distributes an archive to web servers
-"""
+"""Creates and distribute archive to a web server."""
 
 import os.path
-from fabric.api import run, put, env, task
+from datetime import datetime
+from fabric.api import local, run, put, env
+
 
 env.hosts = ["18.204.9.215", "54.144.45.169"]
 
-@task
+
+def do_pack():
+    """
+    creates an archive file
+    and stores it in the versions
+    folder
+    """
+
+    date = datetime.utcnow()
+    file = "versions/web_static_{}{}{}{}{}{}.tgz".format(date.year,
+                                                         date.month,
+                                                         date.day,
+                                                         date.hour,
+                                                         date.minute,
+                                                         date.second)
+
+    if os.path.isdir("versions") is False:
+        if local("mkdir -p versions").failed is True:
+            return None
+    if local("tar -cvzf {} web_static".format(file)).failed is True:
+        return None
+    return file
+
+
 def do_deploy(archive_path):
     """deploys archive to server"""
     # Checks is the file exists
@@ -56,3 +79,11 @@ def do_deploy(archive_path):
 
     # Success
     return True
+
+
+def deploy():
+    """creates and distributes archive to server"""
+    file = do_pack()
+    if file is None:
+        return False
+    return do_deploy(file)
