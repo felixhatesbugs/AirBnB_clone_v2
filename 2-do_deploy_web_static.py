@@ -23,7 +23,7 @@ def do_deploy(archive_path):
     # Uploads archive to webserver
     if put(archive_path, '/tmp/{}'.format(file)).failed is True:
         return False
-    
+
     # deletes archive destination is exists
     if run("rm -rf /data/web_static/releases/{}/".
            format(name)).failed is True:
