@@ -11,7 +11,6 @@ env.hosts = ["18.204.9.215", "54.144.45.169"]
 
 def do_deploy(archive_path):
     """deploys archive to server"""
-
     # Checks is the file exists
     if os.path.isfile(archive_path) is False:
         return False
