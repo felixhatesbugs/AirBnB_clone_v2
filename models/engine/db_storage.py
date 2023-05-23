@@ -89,9 +89,3 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         factory = sessionmaker(bind=self.__engine, expire_on_commit=True)
         self.__session = scoped_session(factory)()
-
-    def close(self):
-        """remove current session and roll back all unsaved transactions
-        """
-        if self.__session:
-            self.__session.close()
