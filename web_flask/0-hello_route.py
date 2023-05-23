@@ -1,4 +1,4 @@
-#!/usr/bin/pyhton3
+#!/usr/bin/python3
 """this script starts a Flask web application"""
 
 from flask import Flask
