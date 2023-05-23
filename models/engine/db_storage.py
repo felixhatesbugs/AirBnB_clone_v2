@@ -89,3 +89,9 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         factory = sessionmaker(bind=self.__engine, expire_on_commit=True)
         self.__session = scoped_session(factory)()
+
+    def close(self):
+        """call remove() method on the private session attribute
+        (self.__session) tips or close() on the class Session
+        """
+        self.__session.remove()
