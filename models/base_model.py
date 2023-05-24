@@ -5,6 +5,8 @@ import models
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime
+
+
 Base = declarative_base()
 
 
@@ -16,7 +18,7 @@ class BaseModel:
         created_at: datetime obj, indicate when the instance is created
         updated_at: datetime obj, indicate when the instance is updated
     """
-    id = Column(String(60), primary_key=True)
+    id = Column(String(60), nullable=False, primary_key=True)
     created_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
 
