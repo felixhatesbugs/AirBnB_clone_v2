@@ -18,7 +18,7 @@ class State(BaseModel, Base):
 
     if env.get('HBNB_TYPE_STORAGE') == 'db':
         name = Column(String(128), nullable=False)
-        cities = relationship("City", cascade="all, delete", backref="state")
+        cities = relationship("City", cascade="all, delete, delete-orphan", backref="state")
     else:
         @property
         def cities(self):
