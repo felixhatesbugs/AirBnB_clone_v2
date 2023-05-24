@@ -10,7 +10,7 @@ from os import environ as env
 place_amenity = Table(
     'place_amenity', Base.metadata,
     Column('place_id', String(60), ForeignKey("places.id")),
-    Column('amenity_id', String(60), ForeignKey("amenities.id")) #this guy
+    Column('amenity_id', String(60), ForeignKey("amenities.id"))
 )
 
 
@@ -42,9 +42,10 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=True)
     amenity_ids = []
 
-    #private attributes
+    # private attributes
     __reviews = relationship("Review", cascade="all, delete", backref="place")
-    __amenities = relationship("Amenity", secondary=place_amenity, backref="place_amenities", viewonly=True)
+    __amenities = relationship("Amenity", secondary=place_amenity,
+                               backref="place_amenities", viewonly=True)
 
     @property
     def reviews(self):
