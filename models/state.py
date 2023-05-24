@@ -15,10 +15,11 @@ class State(BaseModel, Base):
         cities: relation to cities table
     """
     __tablename__ = "states"
-    name = Column(String(128), nullable=False)
-    cities = relationship("City", cascade="all, delete", backref="state")
 
-    if env.get('HBNB_TYPE_STORAGE') != 'db':
+    if env.get('HBNB_TYPE_STORAGE') == 'db':
+        name = Column(String(128), nullable=False)
+        cities = relationship("City", cascade="all, delete", backref="state")
+    else:
         @property
         def cities(self):
             """get all cities with the current state id
