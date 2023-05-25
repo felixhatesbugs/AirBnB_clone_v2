@@ -22,4 +22,6 @@ This is the console /command interpreter for the ALX/Holberton Airbnb clone proj
 To start the console using JSON file storage, navigate to the project folder and enter `./console.py` in the shell.
 
 To start the console using MySQL database as storage method, navigate to the project folder and enter:
-`HBNB_MYSQL_USER=<username> HBNB_MYSQL_PWD=<password HBNB_MYSQL_HOST=<server hostname> HBNB_MYSQL_DB=<database name> HBNB_TYPE_STORAGE=db ./console.py`
+```
+HBNB_MYSQL_USER=<username> HBNB_MYSQL_PWD=<password HBNB_MYSQL_HOST=<server hostname> HBNB_MYSQL_DB=<database name> HBNB_TYPE_STORAGE=db ./console.py
+```
