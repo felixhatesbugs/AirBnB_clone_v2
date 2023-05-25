@@ -62,6 +62,7 @@ def return_n_template(n):
 def return_odd_or_even(n):
     return render_template('6-number_odd_or_even.html', n=n)
 
+
 @app.teardown_appcontext
 def tear_session(self):
     """removes current SQLAlchemy Session
@@ -69,10 +70,12 @@ def tear_session(self):
     """
     storage.close()
 
+
 @app.route('/states_list', strict_slashes=False)
 def return_states():
     states = [v for v in storage.all("State").values()]
     return render_template('7-states_list.html', states=states)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
